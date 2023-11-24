@@ -117,7 +117,18 @@ public:
         // Announce Module
         if (BFAnnounceModule)
         {
-            ChatHandler(player->GetSession()).SendSysMessage("This server is running the |cff4CFF00BufferNPC |rmodule.");
+            WorldSession* session = player->GetSession();
+            switch (session->GetSessionDbLocaleIndex())
+            {
+            case LOCALE_ruRU:
+            {
+                ChatHandler(player->GetSession()).SendSysMessage("На сервере запущен модуль |cff4CFF00BufferNPC |r");
+                break;
+            }
+            default:
+                ChatHandler(player->GetSession()).SendSysMessage("This server is running the |cff4CFF00BufferNPC |rmodule.");
+                break;
+            }
         }
     }
 };
